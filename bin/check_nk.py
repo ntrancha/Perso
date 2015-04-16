@@ -183,15 +183,22 @@ def check_status():
 def display(maps):
     if maps == 1:
         print "baie"
+        return "baie"
     if maps == 2:
         print "dragon"
+        return "dragon"
     if maps == 3:
         print "jardin"
+        return "jardin"
     if maps == 4:
         print "mine"
+        return "mine"
     if maps == 5:
         print "reine"
+        return "reine"
     if maps == 6:
         print "temple"
+        return "temple"
     if maps == 7:
         print "val"
+        return "val"
