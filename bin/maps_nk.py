@@ -30,7 +30,8 @@ def check_maps(maps):
     if maps == 7:
         maps_val()
 
-def verif_all(x,y,w,h,maps,num):
+def verif_all(x,y,w,h,maps,num2):
+    num = str(num2)
     img = '../img/maps/' + maps + '/' + maps + '_cb'+num+'.jpg'
     img1 = '../img/maps/' + maps + '/' + maps + '_cr'+num+'.jpg'
     img0 = '../img/maps/' + maps + '/' + maps + '_cj'+num+'.jpg'
@@ -45,7 +46,7 @@ def verif_all(x,y,w,h,maps,num):
     ret = sys_nk.compare(sys_nk.ouvre(img0), sys_nk.ouvre(img2))
     if ret < 1:
         return 0
-    #sys_nk.delete(img2)
+    sys_nk.delete(img2)
     return -1
 
 def maps_baie():

@@ -13,16 +13,15 @@ def thread_check(name, n):
         thread_check_process(name, n)
         thread_check_status(name, n)
         thread_check_game(name, n)
-        thread_check_map(name, n)
+        #thread_check_map(name, n)
 
 def thread_check_process(name, n):
     if global_nk.G_go == 1:
-        print "Check_process"
         check_nk.check_go()
 
 def thread_check_status(name, n):
     if global_nk.G_go == 1:
-        print "Check_status"
+        print "STATUS"
         status = check_nk.check_status()
         global_nk.G_status = int(status)
         global_nk.G_etat = int(status)
@@ -34,9 +33,9 @@ def thread_check_status(name, n):
 def thread_check_game(name, n):
     if global_nk.G_go == 1:
         if global_nk.G_partie == 1:
-            print "Check_game"
+            print "GAME"
             maps = 0
-            thread.start_new_thread(check_nk.check_score, ("A", 0))
+            check_nk.check_score("A", 0)
             if global_nk.G_maps == 0:
                 maps = check_nk.check_map()
             if global_nk.G_player == 0:
@@ -49,5 +48,4 @@ def thread_check_map(name, n):
     if global_nk.G_go == 1:
         if global_nk.G_partie == 1:
             if global_nk.G_maps != 0:
-                print "Check_maps"
                 maps_nk.check_maps(global_nk.G_maps)

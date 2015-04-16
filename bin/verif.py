@@ -62,11 +62,16 @@ def verif_talent():
     return ret
 
 def verif_playe():
-    if verif_all(2845,0,70,6, 'playe') == 1:
-        return 1
-    if verif_all(2845,0,70,6, 'playe1') == 1:
-        return 1
-    return 0
+    print verif_all(2845,0,70,6, 'playe')
+    print verif_all(2845,0,70,6, 'playe1')
+    print verif_all(2845,0,70,6, 'playe0')
+    if verif_all(2845,0,70,6, 'playe0') < 5:
+        return 0
+    if verif_all(2845,0,70,6, 'playe') < 1:
+        return 0
+    if verif_all(2845,0,70,6, 'playe1') < 1:
+        return 0
+    return 1
 
 def verif_score():
     return verif_all(3482,155,20,20, 'score')

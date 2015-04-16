@@ -149,7 +149,7 @@ def check_map():
     if maps > 0:
         print "Maps : " + str(maps)
         global_nk.G_maps = int(maps)
-        display(int(maps))
+        #display(int(maps))
         return int(maps)
     return 0
 
