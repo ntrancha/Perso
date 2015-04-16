@@ -12,6 +12,7 @@ import sys
 import os
 import sys_nk
 import verif
+import global_nk
 
 def check_maps(maps):
     if maps == 1:
@@ -29,15 +30,33 @@ def check_maps(maps):
     if maps == 7:
         maps_val()
 
+def verif_all(x,y,w,h,maps,num):
+    img = '../img/maps/' + maps + '/' + maps + '_cb'+num+'.jpg'
+    img1 = '../img/maps/' + maps + '/' + maps + '_cr'+num+'.jpg'
+    img0 = '../img/maps/' + maps + '/' + maps + '_cj'+num+'.jpg'
+    img2 = '../img/maps/' + maps + '/' + maps + '_c'+num+'.jpg'
+    sys_nk.sav(sys_nk.screen(x,y,w,h), img2)
+    ret = sys_nk.compare(sys_nk.ouvre(img), sys_nk.ouvre(img2))
+    if ret < 1:
+        return 1
+    ret = sys_nk.compare(sys_nk.ouvre(img1), sys_nk.ouvre(img2))
+    if ret < 1:
+        return 2
+    ret = sys_nk.compare(sys_nk.ouvre(img0), sys_nk.ouvre(img2))
+    if ret < 1:
+        return 0
+    #sys_nk.delete(img2)
+    return -1
+
 def maps_baie():
     return 1
 
 def maps_dragon():
-    sys_nk.sav(sys_nk.screen(3654,899,7,5), '../img/maps/dragon/dragon_c1.jpg')
-    sys_nk.sav(sys_nk.screen(3651,955,7,5), '../img/maps/dragon/dragon_c2.jpg')
-    sys_nk.sav(sys_nk.screen(3613,1030,7,5), '../img/maps/dragon/dragon_c3.jpg')
-    sys_nk.sav(sys_nk.screen(3574,955,7,5), '../img/maps/dragon/dragon_c4.jpg')
-    sys_nk.sav(sys_nk.screen(3573,899,7,5), '../img/maps/dragon/dragon_c5.jpg')
+    verif_all(3654,899,7,5,'dragon', 1)
+    verif_all(3651,955,7,5,'dragon', 2)
+    verif_all(3613,1030,7,5,'dragon', 3)
+    verif_all(3574,955,7,5,'dragon', 4)
+    verif_all(3573,899,7,5,'dragon', 5)
     return 1
 
 def maps_jardin():
@@ -53,10 +72,10 @@ def maps_temple():
     return 1
 
 def maps_val():
-    #sys_nk.sav(sys_nk.screen(3521,877,7,5), '../img/maps/val/val_c1.jpg')
-    #sys_nk.sav(sys_nk.screen(3547,946,7,5), '../img/maps/val/val_c2.jpg')
-    #sys_nk.sav(sys_nk.screen(3564,983,7,5), '../img/maps/val/val_c3.jpg')
-    #sys_nk.sav(sys_nk.screen(3689,933,7,5), '../img/maps/val/val_c4.jpg')
-    #sys_nk.sav(sys_nk.screen(3665,865,7,5), '../img/maps/val/val_c5.jpg')
-    #sys_nk.sav(sys_nk.screen(3648,825,7,5), '../img/maps/val/val_c6.jpg')
+    verif_all(3521,877,7,5,'val', 1)
+    verif_all(3547,946,7,5,'val', 2)
+    verif_all(3564,983,7,5,'val', 3)
+    verif_all(3689,933,7,5,'val', 4)
+    verif_all(3665,865,7,5,'val', 5)
+    verif_all(3648,825,7,5,'val', 6)
     return 1
