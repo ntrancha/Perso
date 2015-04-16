@@ -137,7 +137,7 @@ def check_partie():
         return 1
     return 0
 
-def check_score():
+def check_score(name, m):
     if verif.verif_score() == 0:
         print "score"
         global_nk.G_score = 1

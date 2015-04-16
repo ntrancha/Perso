@@ -36,7 +36,7 @@ def thread_check_game(name, n):
         if global_nk.G_partie == 1:
             print "Check_game"
             maps = 0
-            check_nk.check_score()
+            thread.start_new_thread(check_nk.check_score, ("A", 0))
             if global_nk.G_maps == 0:
                 maps = check_nk.check_map()
             if global_nk.G_player == 0:
