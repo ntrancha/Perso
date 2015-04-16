@@ -1,8 +1,6 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
 
-import threading
-import thread
 import math, operator
 import pyscreenshot as ImageGrab
 from PIL import Image
@@ -79,6 +77,11 @@ def delete(fichier):
         os.remove(fichier)
     except:
         return 0
+    return 1
+
+def upaus(time):
+    com = "./pause " + time
+    execute(com)
     return 1
 
 def paus(time):
