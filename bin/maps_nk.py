@@ -14,7 +14,9 @@ import sys_nk
 import verif
 import global_nk
 
-def check_maps(maps):
+def check_maps():
+    print "2:"
+    maps = global_nk.G_maps
     if maps == 1:
         maps_baie()
     if maps == 2:
@@ -29,6 +31,7 @@ def check_maps(maps):
         maps_temple()
     if maps == 7:
         maps_val()
+    print "ok"
 
 def verif_all(x,y,w,h,maps,num2):
     num = str(num2)
