@@ -13,12 +13,8 @@ import os
 import sys_nk
 
 def verif_all(x,y,w,h,name):
-    img = '../img/status/' + name + '.jpg'
-    img2 = '../img/status/' + name + '2.jpg'
-    sys_nk.sav(sys_nk.screen(x,y,w,h), img2)
-    ret = sys_nk.compare(sys_nk.ouvre(img), sys_nk.ouvre(img2))
-    sys_nk.delete(img2)
-    return ret
+    name2 = name + "2"
+    return sys_nk.screen_compare(x,y,w,h, name, name2, '../img/status/')
 
 def verif_menu():
     return verif_all(3790,1050,40,20, 'screen')
@@ -53,9 +49,9 @@ def verif_maps():
     return -1
 
 def verif_talent():
-    ret = screen_compare(2022,1030,2,12, 'talent', 'talent2', '../img/status/')
-    ret += screen_compare(2037,1030,2,12, 'talent3', 'talent4', '../img/status/')
-    ret += screen_compare(1987,740,4,20, 'talent5', 'talent6', '../img/status/')
+    ret = sys_nk.screen_compare(2022,1030,2,12, 'talent', 'talent2', '../img/status/')
+    ret += sys_nk.screen_compare(2037,1030,2,12, 'talent3', 'talent4', '../img/status/')
+    ret += sys_nk.screen_compare(1987,740,4,20, 'talent5', 'talent6', '../img/status/')
     return ret
 
 def verif_playe():
