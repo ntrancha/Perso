@@ -35,11 +35,12 @@ def check_maps():
 
 def verif_all(x,y,w,h,maps,num2):
     num = str(num2)
-    img = '../img/maps/' + maps + '/' + maps + '_cb'+num+'.jpg'
-    img1 = '../img/maps/' + maps + '/' + maps + '_cr'+num+'.jpg'
-    img0 = '../img/maps/' + maps + '/' + maps + '_cj'+num+'.jpg'
+    #img = '../img/maps/' + maps + '/' + maps + '_cb'+num+'.jpg'
+    #img1 = '../img/maps/' + maps + '/' + maps + '_cr'+num+'.jpg'
+    #img0 = '../img/maps/' + maps + '/' + maps + '_cj'+num+'.jpg'
     img2 = '../img/maps/' + maps + '/' + maps + '_c'+num+'.jpg'
     sys_nk.sav(sys_nk.screen(x,y,w,h), img2)
+    return 0
     ret = sys_nk.compare(sys_nk.ouvre(img), sys_nk.ouvre(img2))
     if ret < 1:
         return 1

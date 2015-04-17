@@ -109,7 +109,8 @@ def check_mort():
 
 def check_partie():
     global_nk.G_partie = 0
-    if verif.verif_player() < 3:
+    #if verif.verif_player() < 3:
+    if verif.verif_player() < 1:
         global_nk.G_partie = 1
         print "player"
         global_nk.G_player = 1
@@ -162,6 +163,7 @@ def check_talent():
     return 0
 
 def check_status():
+    prev = global_nk.G_partie
     if global_nk.G_partie == 1:
         if check_partie() == 0:
             if check_jaune() == 1:
@@ -178,7 +180,8 @@ def check_status():
         if global_nk.G_jouer == 1:
             return 2
         return 1
-    return 0
+    global_nk.G_partie = prev
+    return prev
 
 def display(maps):
     if maps == 1:

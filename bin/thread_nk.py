@@ -48,5 +48,4 @@ def thread_check_map(name, n):
     if global_nk.G_go == 1:
         if global_nk.G_partie == 1:
             if global_nk.G_maps != 0:
-                print "1:"
                 maps_nk.check_maps()

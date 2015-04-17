@@ -9,6 +9,18 @@ import numpy
 import sys
 import os
 
+def screen_compare(x, y, w, h, file1, file2, path)
+    f2 = path + file2 + '.jpg'
+    sav(screen(x, y, w, h, f2))
+    ret = compare_file(file1, file2, path)
+    delete(f2)
+    return ret
+
+def compare_file(file1, file2, path):
+    f1 = path + file1 + '.jpg'
+    f2 = path + file2 + '.jpg'
+    return sys_nk.compare(sys_nk.ouvre(f1), sys_nk.ouvre(f2))
+
 def screen(x, y, w, h):
     return ImageGrab.grab(bbox=(x, y, (x + w), (y + h)))
 
@@ -33,8 +45,8 @@ def ouvre(fichier1):
     try:
         image1 = Image.open(fichier1)
     except:
-        paus("1")
-        return ouvre(fichier1)
+        print "Bug ouverture: "+fichier1
+        return -1
     return image1
 
 def sav(fichier, dest):
