@@ -21,19 +21,21 @@ def thread_check_process(name, n):
 
 def thread_check_status(name, n):
     if global_nk.G_go == 1:
-        print "STATUS"
         status = check_nk.check_status()
+        old = global_nk.G_etat
         global_nk.G_status = int(status)
         global_nk.G_etat = int(status)
-        print int(status)
+        if old != status:
+            sys_nk.clear_console()
+            print "-------------------"
+            print "STATUS: " + str(status)
         if status == 1 or status == 2:
-            global_nk.G_maps = 0
-            global_nk.G_partie = 0
+            if old == status:
+                global_nk.init()
 
 def thread_check_game(name, n):
     if global_nk.G_go == 1:
         if global_nk.G_partie == 1:
-            print "GAME"
             maps = 0
             check_nk.check_score("A", 0)
             if global_nk.G_maps == 0:
@@ -41,8 +43,18 @@ def thread_check_game(name, n):
             if global_nk.G_player == 0:
                 check_nk.check_talent()
                 if check_nk.check_mort() == 0:
-                    global_nk.G_pv = check_nk.check_pv()
-                    global_nk.G_mana = check_nk.check_mana()
+                    old_pv = global_nk.G_pv
+                    old_mana = global_nk.G_mana
+                    pv = check_nk.check_pv()
+                    mana = check_nk.check_mana()
+                    if pv != 0:
+                        global_nk.G_pv = pv
+                    if mana != 0:
+                        global_nk.G_mana = mana
+                    if old_pv != global_nk.G_pv:
+                        print "Pv: "+str(global_nk.G_pv)
+                    if old_mana != global_nk.G_mana:
+                        print "Mana"+str(global_nk.G_mana)
 
 def thread_check_map(name, n):
     if global_nk.G_go == 1:

@@ -9,9 +9,10 @@ import numpy
 import sys
 import os
 
-def screen_compare(x, y, w, h, file1, file2, path)
+def screen_compare(x, y, w, h, file1, file2, path):
     f2 = path + file2 + '.jpg'
-    sav(screen(x, y, w, h, f2))
+    f1 = path + file1 + '.jpg'
+    sav(screen(x, y, w, h), f2)
     ret = compare_file(file1, file2, path)
     delete(f2)
     return ret
@@ -19,7 +20,7 @@ def screen_compare(x, y, w, h, file1, file2, path)
 def compare_file(file1, file2, path):
     f1 = path + file1 + '.jpg'
     f2 = path + file2 + '.jpg'
-    return sys_nk.compare(sys_nk.ouvre(f1), sys_nk.ouvre(f2))
+    return compare(ouvre(f1), ouvre(f2))
 
 def screen(x, y, w, h):
     return ImageGrab.grab(bbox=(x, y, (x + w), (y + h)))
@@ -66,8 +67,8 @@ def contenu(fichier):
         f_contenu = mon_fichier.read()
         mon_fichier.close()
     except:
-        paus("1")
-        return contenu(fichier)
+        print "Error open:"+ fichier
+        #return contenu(fichier)
     return f_contenu
 
 def execute(ordre):
@@ -76,6 +77,9 @@ def execute(ordre):
     except:
         return 0
     return 1
+
+def clear_console():
+    execute('clear')
 
 def commande(ordre):
     com = "{0} > tempo.txt".format(ordre)

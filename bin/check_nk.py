@@ -20,54 +20,55 @@ import global_nk
 def check_pv():
     if sys_nk.screen_compare(2330,984,20,3, 'pv10', 'pv010', '../img/pv/') == 0:
         return 10
-    if sys_nk.screen_compare(2310,984,20,3, 'pv9', 'pv09', '../img/pv/') == 0:
-        return 9
+    #if sys_nk.screen_compare(2310,984,20,3, 'pv9', 'pv09', '../img/pv/') == 0:
+    #    return 9
     if sys_nk.screen_compare(2290,984,20,3, 'pv8', 'pv08', '../img/pv/') == 0:
         return 8
-    if sys_nk.screen_compare(2270,984,20,3, 'pv7', 'pv07', '../img/pv/') == 0:
-        return 7
+    #if sys_nk.screen_compare(2270,984,20,3, 'pv7', 'pv07', '../img/pv/') == 0:
+    #    return 7
     if sys_nk.screen_compare(2250,984,20,3, 'pv6', 'pv06', '../img/pv/') == 0:
         return 6
-    if sys_nk.screen_compare(2230,984,20,3, 'pv5', 'pv05', '../img/pv/') == 0:
-        return 5
+    #if sys_nk.screen_compare(2230,984,20,3, 'pv5', 'pv05', '../img/pv/') == 0:
+    #    return 5
     if sys_nk.screen_compare(2210,984,20,3, 'pv4', 'pv04', '../img/pv/') == 0:
         return 4
-    if sys_nk.screen_compare(2190,984,20,3, 'pv3', 'pv03', '../img/pv/') == 0:
-        return 3
+    #if sys_nk.screen_compare(2190,984,20,3, 'pv3', 'pv03', '../img/pv/') == 0:
+    #    return 3
     if sys_nk.screen_compare(2170,984,20,3, 'pv2', 'pv02', '../img/pv/') == 0:
         return 2
-    if sys_nk.screen_compare(2150,984,20,3, 'pv', 'pv0', '../img/pv/') == 0:
-        return 1
+    #if sys_nk.screen_compare(2150,984,20,3, 'pv', 'pv0', '../img/pv/') == 0:
+    #    return 1
     return 0
 
 def check_mana():
     if sys_nk.screen_compare(2310,1022,20,3, 'mana10', 'mana010', '../img/mana/') == 0:
         return 10
-    if sys_nk.screen_compare(2290,1022,20,3, 'mana9', 'mana09', '../img/mana/') == 0:
-        return 9
+    #if sys_nk.screen_compare(2290,1022,20,3, 'mana9', 'mana09', '../img/mana/') == 0:
+    #    return 9
     if sys_nk.screen_compare(2270,1022,20,3, 'mana8', 'mana08', '../img/mana/') == 0:
         return 8
-    if sys_nk.screen_compare(2250,1022,20,3, 'mana7', 'mana07', '../img/mana/') == 0:
-        return 7
+    #if sys_nk.screen_compare(2250,1022,20,3, 'mana7', 'mana07', '../img/mana/') == 0:
+    #    return 7
     if sys_nk.screen_compare(2230,1022,20,3, 'mana6', 'mana06', '../img/mana/') == 0:
         return 6
-    if sys_nk.screen_compare(2210,1022,20,3, 'mana5', 'mana05', '../img/mana/') == 0:
-        return 5
+    #if sys_nk.screen_compare(2210,1022,20,3, 'mana5', 'mana05', '../img/mana/') == 0:
+    #    return 5
     if sys_nk.screen_compare(2190,1022,20,3, 'mana4', 'mana04', '../img/mana/') == 0:
         return 4
-    if sys_nk.screen_compare(2170,1022,20,3, 'mana3', 'mana03', '../img/mana/') == 0:
-        return 3
+    #if sys_nk.screen_compare(2170,1022,20,3, 'mana3', 'mana03', '../img/mana/') == 0:
+    #    return 3
     if sys_nk.screen_compare(2150,1022,20,3, 'mana2', 'mana02', '../img/mana/') == 0:
         return 2
-    if sys_nk.screen_compare(2130,1022,20,3, 'mana1', 'mana01', '../img/mana/') == 0:
-        return 1
+    #if sys_nk.screen_compare(2130,1022,20,3, 'mana1', 'mana01', '../img/mana/') == 0:
+    #    return 1
     return 0
 
 def check_jaune():
     global_nk.G_jaune = 0
     if verif.verif_jaune() == 0 and verif.verif_logo() < 20:
-        global_nk.G_jaune = 1
-        return 1
+        if verif.verif_quete() == 0:
+            global_nk.G_jaune = 1
+            return 1
     return 0
 
 def check_jouer():
@@ -89,10 +90,10 @@ def check_mort():
 
 def check_partie():
     global_nk.G_partie = 0
+    old = int(global_nk.G_player)
     #if verif.verif_player() < 3:
-    if verif.verif_player() < 1:
+    if verif.verif_player() == 0:
         global_nk.G_partie = 1
-        print "player"
         global_nk.G_player = 1
         return 1
     if verif.verif_playe() == 0:
@@ -119,8 +120,11 @@ def check_partie():
     return 0
 
 def check_score(name, m):
+    old = global_nk.G_score
+    global_nk.G_score = 0
     if verif.verif_score() == 0:
-        print "score"
+        if old != 1:
+            print "Score"
         global_nk.G_score = 1
         return 1
     return 0
@@ -130,14 +134,16 @@ def check_map():
     if maps > 0:
         print "Maps : " + str(maps)
         global_nk.G_maps = int(maps)
-        #display(int(maps))
+        display(int(maps))
         return int(maps)
     return 0
 
 def check_talent():
+    old = global_nk.G_talent
     global_nk.G_talent = 0
     if verif.verif_talent() == 0:
-        print "Talent"
+        if old != 1:
+            print "Talent"
         global_nk.G_talent = 1
         return 1
     return 0

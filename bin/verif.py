@@ -17,6 +17,7 @@ def verif_all(x,y,w,h,name):
     return sys_nk.screen_compare(x,y,w,h, name, name2, '../img/status/')
 
 def verif_menu():
+    verif_quete()
     return verif_all(3790,1050,40,20, 'screen')
 
 def verif_jaune():
@@ -25,26 +26,45 @@ def verif_jaune():
 def verif_partie():
     return verif_all(2093,26,13,4, 'jouer')
 
+def verif_quete():
+    return verif_all(3720,1020,50,50, 'quete')
+
 def verif_maps():
     sys_nk.sav(sys_nk.screen(3610,850,20,20), '../img/map/maps3.jpg')
+    sys_nk.sav(sys_nk.screen(3590,800,20,20), '../img/map/maps2.jpg')
     if sys_nk.compare_file('reine0', 'maps3', '../img/map/') < 2:
         return 5
-    sys_nk.sav(sys_nk.screen(3590,800,20,20), '../img/map/maps2.jpg')
+    if sys_nk.compare_file('reine1', 'maps3', '../img/map/') < 2:
+        return 5
     if sys_nk.compare_file('val', 'maps2', '../img/map/') == 0:
         return 7
-    if sys_nk.compare_file('baie', 'maps2', '../img/map/') == 0:
+    if sys_nk.compare_file('val0', 'maps3', '../img/map/') == 0:
+        return 7
+    if sys_nk.compare_file('baie', 'maps2', '../img/map/') < 3:
+        return 1
+    if sys_nk.compare_file('baie0', 'maps3', '../img/map/') < 3:
         return 1
     if sys_nk.compare_file('jardin', 'maps2', '../img/map/') == 0:
         return 3
-    if sys_nk.compare_file('jardin2', 'maps2', '../img/map/') == 0:
+    if sys_nk.compare_file('jardin0', 'maps3', '../img/map/') == 0:
+        return 3
+    if sys_nk.compare_file('jardin1', 'maps3', '../img/map/') == 0:
         return 3
     if sys_nk.compare_file('mine', 'maps2', '../img/map/') == 0:
         return 4
+    if sys_nk.compare_file('mine0', 'maps3', '../img/map/') == 0:
+        return 4
     if sys_nk.compare_file('temple', 'maps2', '../img/map/') == 0:
         return 6
-    if sys_nk.compare_file('dragon', 'maps2', '../img/map/') < 5:
+    if sys_nk.compare_file('temple0', 'maps3', '../img/map/') == 0:
+        return 6
+    if sys_nk.compare_file('dragon', 'maps2', '../img/map/') == 0:
         return 2
-    if sys_nk.compare_file('reine', 'maps2', '../img/map/') < 5:
+    if sys_nk.compare_file('dragon0', 'maps3', '../img/map/') == 0:
+        return 2
+    if sys_nk.compare_file('dragon1', 'maps3', '../img/map/') == 0:
+        return 2
+    if sys_nk.compare_file('reine', 'maps2', '../img/map/') < 2:
         return 5
     return -1
 
@@ -55,11 +75,16 @@ def verif_talent():
     return ret
 
 def verif_playe():
-    if verif_all(2845,0,70,6, 'playe0') < 5:
+    sys_nk.sav(sys_nk.screen(2845,0,70,6),'../img/status/playe5.jpg')
+    if sys_nk.compare_file('playe', 'playe5', '../img/status/') == 0:
         return 0
-    if verif_all(2845,0,70,6, 'playe') < 1:
+    if sys_nk.compare_file('playe0', 'playe5', '../img/status/') == 0:
         return 0
-    if verif_all(2845,0,70,6, 'playe1') < 1:
+    if sys_nk.compare_file('playe1', 'playe5', '../img/status/') == 0:
+        return 0
+    if sys_nk.compare_file('playe3', 'playe5', '../img/status/') == 0:
+        return 0
+    if sys_nk.compare_file('playe4', 'playe5', '../img/status/') == 0:
         return 0
     return 1
 
@@ -67,7 +92,13 @@ def verif_score():
     return verif_all(3482,155,20,20, 'score')
 
 def verif_player():
-    return verif_all(2123,1030,20,20, 'player')
+    if verif_all(2123,1030,20,20, 'player') == 0:
+        return 0
+    if verif_all(2150,977,120,8, 'player0') == 0:
+        return 0
+    if verif_all(2150,977,120,8, 'player1') == 0:
+        return 0
+    return 1
 
 def verif_dead():
     return verif_all(2110,1035,20,10, 'dead')
