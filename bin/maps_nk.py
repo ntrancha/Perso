@@ -12,10 +12,8 @@ import sys
 import os
 import sys_nk
 import verif
-import global_nk
 
-def check_maps():
-    maps = global_nk.G_maps
+def check_maps(maps):
     if maps == 1:
         maps_baie()
     if maps == 2:
