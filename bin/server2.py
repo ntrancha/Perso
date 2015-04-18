@@ -1,8 +1,6 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
 
-import threading
-import thread
 import sys_nk
 import maps_nk
 import check_nk

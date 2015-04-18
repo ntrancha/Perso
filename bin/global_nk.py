@@ -3,152 +3,77 @@
 
 import sys_nk
 import thread_nk
+from threading import Thread, RLock
+import thread
 
 G_etat = 0
+v_etat = RLock()
 G_jaune = 0
+v_jaune = RLock()
 G_jouer = 0
+v_jouer = RLock()
 G_maps = 0
+v_maps = RLock()
 G_mort = 0
+v_mort = RLock()
 G_partie = 0
+v_partie = RLock()
 G_talent = 0
+v_talent = RLock()
 G_status = 0
+v_status = RLock()
 G_go = 1
+v_go = RLock()
 G_pv = 0
+v_pv = RLock()
 G_mana = 0
+v_mana = RLock()
 G_score = 0
+v_score = RLock()
 G_player = 0
+v_player = RLock()
 
-def get_etat():
-    with thread_nk.verrou:
-        return G_etat
 
-def set_etat(val):
-    with thread_nk.verrou:
-        G_etat = val
+def getter(var):
+    ve = "v_" + var
+    va = "G_" + var
+    with globals()[ve]:
+        return globals()[va]
 
-def get_jaune():
-    with thread_nk.verrou:
-        return G_jaune
-
-def set_jaune(val):
-    with thread_nk.verrou:
-        G_jaune = val
-
-def get_jouer():
-    with thread_nk.verrou:
-        return G_jouer
-
-def set_jouer(val):
-    with thread_nk.verrou:
-        G_jouer = val
-
-def get_maps():
-    with thread_nk.verrou:
-        return G_maps
-
-def set_maps(val):
-    with thread_nk.verrou:
-        G_maps = val
-
-def get_mort():
-    with thread_nk.verrou:
-        return G_mort
-
-def set_mort(val):
-    with thread_nk.verrou:
-        G_mort = val
-
-def get_partie():
-    with thread_nk.verrou:
-        return G_partie
-
-def set_partie(val):
-    with thread_nk.verrou:
-        G_partie = val
-
-def get_talent():
-    with thread_nk.verrou:
-        return G_talent
-
-def set_talent(val):
-    with thread_nk.verrou:
-        G_talent = val
-
-def get_status():
-    with thread_nk.verrou:
-        return G_status
-
-def set_status(val):
-    with thread_nk.verrou:
-        G_status = val
-
-def get_go():
-    with thread_nk.verrou:
-        return G_go
-
-def set_go(val):
-    with thread_nk.verrou:
-        G_go = val
-
-def get_pv():
-    with thread_nk.verrou:
-        return G_pv
-
-def set_pv(val):
-    with thread_nk.verrou:
-        G_pv = val
-
-def get_mana():
-    with thread_nk.verrou:
-        return G_mana
-
-def set_mana(val):
-    with thread_nk.verrou:
-        G_mana = val
-
-def get_sccore():
-    with thread_nk.verrou:
-        return G_score
-
-def set_score(val):
-    with thread_nk.verrou:
-        G_score = val
-
-def get_player():
-    with thread_nk.verrou:
-        return G_player
-
-def set_player(val):
-    with thread_nk.verrou:
-        G_player = val
-
+def setter(var, val):
+    ve = "v_" + var
+    va = "G_" + var
+    with globals()[ve]:
+        globals()[va] = val
 
 def init():
     #sys_nk.execute("rm -rf ../tmp/*")
     sys_nk.execute('echo "1" > ../tmp/go.txt')
-    global G_etat
-    global G_jaune
-    global G_jouer
-    global G_maps
-    global G_mort
-    global G_partie
-    global G_talent
-    global G_status
-    global G_go
-    global pv
-    global mana
-    global G_score
-    global G_player
-    G_etat = 0
-    G_jaune = 0
-    G_jouer = 0
-    G_maps = 0
-    G_mort = 0
-    G_partie = 0
-    G_talent = 0
-    G_status = 0
-    G_go = 1
-    G_pv = 0
-    G_mana = 0
-    G_score = 0
-    G_player = 0
+    setter('etat', 0)
+    setter('jaune', 0)
+    setter('jouer', 0)
+    setter('maps', 0)
+    setter('mort', 0)
+    setter('partie', 0)
+    setter('talent', 0)
+    setter('status', 0)
+    setter('go', 1)
+    setter('pv', 0)
+    setter('mana', 0)
+    setter('score', 0)
+    setter('player', 0)
+
+def debug():
+    print 'etat: ' + str(getter('etat'))
+    print 'jaune: ' + str(getter('jaune'))
+    print 'jouer: ' + str(getter('jouer'))
+    print 'maps: ' + str(getter('maps'))
+    print 'mort: ' + str(getter('mort'))
+    print 'partie: ' + str(getter('partie'))
+    print 'talent: ' + str(getter('talent'))
+    print 'status: ' + str(getter('status'))
+    print 'go: ' + str(getter('go'))
+    print 'pv: ' + str(getter('pv'))
+    print 'mana: ' + str(getter('mana'))
+    print 'score: ' + str(getter('score'))
+    print 'player: ' + str(getter('player'))
