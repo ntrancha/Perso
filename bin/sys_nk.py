@@ -68,7 +68,7 @@ def contenu(fichier):
         mon_fichier.close()
     except:
         print "Error open:"+ fichier
-        #return contenu(fichier)
+        return 1
     return f_contenu
 
 def execute(ordre):

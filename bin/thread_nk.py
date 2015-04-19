@@ -22,7 +22,6 @@ def thread_check_process(name, n):
 
 def thread_check_status(name, n):
     while global_nk.getter('go') == 1:
-        print "test"
         status = check_nk.check_status()
         old = global_nk.getter('etat')
         global_nk.setter('status', int(status))
@@ -41,7 +40,7 @@ def thread_check_game(name, n):
         if global_nk.getter('partie') == 1:
             maps = 0
             check_nk.check_score("A", 0)
-            if global_nk.getyrt('maps') == 0:
+            if global_nk.getter('maps') == 0:
                 maps = check_nk.check_map()
             if global_nk.getter('player') == 0:
                 check_nk.check_talent()

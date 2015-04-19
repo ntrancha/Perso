@@ -133,7 +133,7 @@ def check_map():
     maps = verif.verif_maps()
     if maps > 0:
         print "Maps : " + str(maps)
-        global_nk.set_ter('maps',int(maps))
+        global_nk.setter('maps',int(maps))
         display(int(maps))
         return int(maps)
     return 0
