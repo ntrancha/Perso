@@ -68,9 +68,9 @@ def check_jaune():
     jaune = verif.verif_jaune()
     logo = verif.verif_logo()
     quete = verif.verif_quete()
-    print " jaune => " + str(jaune)
-    print " logo => " + str(logo)
-    print " quete => " + str(quete)
+    #print " jaune => " + str(jaune)
+    #print " logo => " + str(logo)
+    #print " quete => " + str(quete)
     if jaune == 0 and logo < 10:
         if quete < 20:
             global_nk.setter('jaune',1)
@@ -126,7 +126,7 @@ def check_partie():
     return 0
 
 def check_score(name, m):
-    old = ed_nk.get_score()
+    old = global_nk.getter('score')
     global_nk.setter('score',0)
     if verif.verif_score() == 0:
         if old != 1:

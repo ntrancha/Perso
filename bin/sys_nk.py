@@ -105,6 +105,10 @@ def paus(time):
     execute(com)
     return 1
 
+def get_pid():
+    commande = "echo '" + str(os.getpid()) + "' > ../tmp/pid.txt"
+    execute(commande)
+
 def get_x():
     return commande('./get_x.sh')
 
