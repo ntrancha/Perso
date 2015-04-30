@@ -65,8 +65,14 @@ def check_mana():
 
 def check_jaune():
     global_nk.setter('jaune',0)
-    if verif.verif_jaune() == 0 and verif.verif_logo() < 20:
-        if verif.verif_quete() == 0:
+    jaune = verif.verif_jaune()
+    logo = verif.verif_logo()
+    quete = verif.verif_quete()
+    print " jaune => " + str(jaune)
+    print " logo => " + str(logo)
+    print " quete => " + str(quete)
+    if jaune == 0 and logo < 10:
+        if quete < 20:
             global_nk.setter('jaune',1)
             return 1
     return 0

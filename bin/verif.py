@@ -27,7 +27,7 @@ def verif_partie():
     return verif_all(2093,26,13,4, 'jouer')
 
 def verif_quete():
-    return verif_all(3720,1020,50,50, 'quete')
+    return verif_all(3730,1020,40,50, 'quete')
 
 def verif_maps():
     sys_nk.sav(sys_nk.screen(3610,850,20,20), '../img/map/maps3.jpg')

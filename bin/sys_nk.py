@@ -118,15 +118,21 @@ def deplace(x2, y2):
     yp = ((y2 - int(y) ) / randint(10,20)) + int(y)
     commande = "xdotool mousemove " + str(xp) + " " + str(yp)
     execute(commande)
+    if int(x2) - 10 < int (xp) and int(xp) < int(x2) + 10:
+        if int(y2) - 10 < int (yp) and int(yp) < int(y2) + 10:
+            commande = "xdotool mousemove " + str(x2) + " " + str(y2)
+            execute(commande)
+            print "stop"
+            return 1
     if int(x) < int(x2):
         if int(xp) < int(x2) - 5:
             deplace(int(x2), int(y2))
-    if int(x) > int(x2):
+    elif int(x) > int(x2):
         if int(xp) > int(x2) + 5:
             deplace(int(x2), int(y2))
-    if int(y) < int(y2):
+    elif int(y) < int(y2):
         if int(yp) < int(y2) - 5:
             deplace(int(x2), int(y2))
-    if int(y) > int(y2):
+    elif int(y) > int(y2):
         if int(yp) > int(y2) + 5:
             deplace(int(x2), int(y2))
