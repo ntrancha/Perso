@@ -3,33 +3,40 @@
 
 #import global_nk
 from Tkinter import *
+from tkMessageBox import *
 
 class Interface(Frame):
 
     def canevas(self):
-        zone_dessin = Canvas(self, width=500, height=500, bg='yellow',bd=8,relief="ridge")
-        zone_dessin.pack(side="left")
-        zone_dessin = Canvas(self, width=500, height=500, bg='red',bd=8,relief="ridge")
-        zone_dessin.pack(side="right")
+        self.zone_dessin = Canvas(self, width=500, height=500, bg='yellow',bd=8,relief="ridge")
+        self.zone_dessin.create_text(75, 60, text="Cible", font="Arial 16 italic", fill="blue")
+        self.zone_dessin.create_text(50, 20, text="test", font="Arial 16 italic", fill="blue")
+        self.zone_dessin.pack(side="left")
+        self.zone_dessin2 = Canvas(self, width=500, height=500, bg='red',bd=8,relief="ridge")
+        self.zone_dessin2.focus_set()
+        self.zone_dessin2.bind("<Key>", self.clavier)
+        self.zone_dessin2.pack(side="right")
 
-    def frame(self):
-        # frame 1
-        Frame1 = Frame(fenetre, borderwidth=2, relief=GROOVE, bg="red")
-        Frame1.pack(side=LEFT)
+    def frame(self, mode):
+        if mode == 0:
+            # frame 1
+            self.Frame1 = Frame(fenetre, borderwidth=2, relief=GROOVE, bg="red")
+            self.Frame1.pack(side=LEFT)
 
-        # frame 2
-        Frame2 = Frame(fenetre, borderwidth=2, relief=GROOVE)
-        Frame2.pack(side=LEFT, padx=10, pady=10)
+            # frame 2
+            Frame2 = Frame(fenetre, borderwidth=2, relief=GROOVE)
+            Frame2.pack(side=LEFT, padx=10, pady=10)
 
-        # frame 3 dans frame 2
-        Frame3 = Frame(Frame2, bg="white", borderwidth=2, relief=GROOVE)
-        Frame3.pack(side=RIGHT, padx=5, pady=5)
+            # frame 3 dans frame 2
+            Frame3 = Frame(Frame2, bg="white", borderwidth=2, relief=GROOVE)
+            Frame3.pack(side=RIGHT, padx=5, pady=5)
 
-        # Ajout de labels
-        Label(Frame1, text="Frame 1").pack(padx=100, pady=100)
-        Label(Frame2, text="Frame 2").pack(padx=10, pady=10)
-        Label(Frame3, text="Frame 3",bg="white").pack(padx=10, pady=10)
-
+            # Ajout de labels
+            Label(self.Frame1, text="Frame 1").pack(padx=100, pady=100)
+            Label(Frame2, text="Frame 2").pack(padx=10, pady=10)
+            Label(Frame3, text="Frame 3",bg="white").pack(padx=10, pady=10)
+        if mode == 1:
+            print "toto"
 
     def __init__(self, fenetre, **kwargs):
         #Frame.__init__(self, fenetre, width=368, height=176, **kwargs)
@@ -38,7 +45,8 @@ class Interface(Frame):
         self.nb_clic = 0
         fenetre.title("NK")
         self.menu_bar()
-        self.frame()
+        #self.frame(0)
+        self.canevas()
         
     def test_interface(self):
         # Création de nos widgets
@@ -59,12 +67,12 @@ class Interface(Frame):
     def menu_bar(self):
         menubar = Menu(self)
     
-        menu1 = Menu(menubar, tearoff=0)
-        menu1.add_command(label="Start", command=self.start)
-        menu1.add_command(label="Reset", command=self.test)
-        menu1.add_separator()
-        menu1.add_command(label="Quitter", command=self.quit)
-        menubar.add_cascade(label="Menu", menu=menu1)
+        self.menu1 = Menu(menubar, tearoff=0)
+        self.menu1.add_command(label="Start", command=self.start)
+        self.menu1.add_command(label="Reset", command=self.test)
+        self.menu1.add_separator()
+        self.menu1.add_command(label="Quitter", command=self.quit)
+        menubar.add_cascade(label="Menu", menu=self.menu1)
 
         menu3 = Menu(menubar, tearoff=0)
         menu3.add_command(label="A propos", command=self.test)
@@ -79,17 +87,25 @@ class Interface(Frame):
         print "stop"
 
     def start(self):
-        self.Frame1["text"] = "toto"
+        self.menu1.entryconfig(0, label="Coucou")
+        self.zone_dessin.itemconfigure(1, text="toto")
+        self.zone_dessin.itemconfigure(2, text="OK")
 
     def cliquer(self):
         self.nb_clic += 1
-        self.message["text"] = "Vous avez cliqué {} fois.".format(self.nb_clic)
+        self.imessage["text"] = "Vous avez cliqué {} fois.".format(self.nb_clic)
 
     def destroy(self):
         print "KILL"
 
     def test(self):
+        showinfo('Titre 3', 'Vous avez peur!')
         print "Menu"
+
+    def clavier(self, event):
+        touche = event.keysym
+        #self.frame(1)
+        print(touche)
 
 if __name__=='__main__':
     fenetre = Tk()
