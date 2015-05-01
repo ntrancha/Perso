@@ -6,6 +6,8 @@ import maps_nk
 import check_nk
 import global_nk
 import thread_nk
+import interface_nk 
+from Tkinter import *
 
 if __name__=='__main__': 
     global_nk.init()
@@ -14,6 +16,7 @@ if __name__=='__main__':
     thread_nk.thread_check("A", 0)
     #sys_nk.deplace(3050,150)
     #sys_nk.get_pid()
-    while 1 == 1:
-        sys_nk.paus("2")
-
+    fenetre = Tk()
+    interface = interface_nk.Interface(fenetre)
+    interface.mainloop()
+    interface.destroy()

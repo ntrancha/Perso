@@ -17,13 +17,13 @@ def thread_check(name, n):
     thread.start_new_thread(thread_check_map, ("A", 0))
 
 def thread_check_process(name, n):
-    #while global_nk.getter('go') == 1:
-    while 1 == 1:
+    while global_nk.getter('go') == 1:
+    #while 1 == 1:
         check_nk.check_go()
 
 def thread_check_status(name, n):
-    #while global_nk.getter('go') == 1:
-    while 1 == 1:
+    while global_nk.getter('go') == 1:
+    #while 1 == 1:
         status = check_nk.check_status()
         old = global_nk.getter('etat')
         global_nk.setter('status', int(status))
@@ -42,8 +42,8 @@ def thread_check_status(name, n):
         global_nk.debug()
 
 def thread_check_game(name, n):
-    #while global_nk.getter('go') == 1:
-    while 1 == 1:
+    while global_nk.getter('go') == 1:
+    #while 1 == 1:
         if global_nk.getter('partie') == 1:
             maps = 0
             check_nk.check_score("A", 0)
@@ -66,8 +66,8 @@ def thread_check_game(name, n):
                         print "Mana"+str(global_nk.getter('mana'))
 
 def thread_check_map(name, n):
-    #while global_nk.getter('go') == 1:
-    while 1 == 1:
+    while global_nk.getter('go') == 1:
+    #while 1 == 1:
         if global_nk.getter('partie') == 1:
             if global_nk.getter('maps') != 0:
                 maps_nk.check_maps(global_nk.getter('maps'))
